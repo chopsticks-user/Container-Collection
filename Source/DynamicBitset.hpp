@@ -1,27 +1,29 @@
-#ifndef CONTAINER_SOURCE_DYNAMIC_BITSET_HPP
-#define CONTAINER_SOURCE_DYNAMIC_BITSET_HPP
+#ifndef CONTAINER_DYNAMIC_BITSET_HPP
+#define CONTAINER_DYNAMIC_BITSET_HPP
 
 #include "Base.hpp"
 
 #include <algorithm>
 #include <bitset>
 #include <cstdint>
-#include <cstring>
 #include <iostream>
+#include <memory>
 
 namespace container {
 
 class DynamicBitset {
 public:
-  DynamicBitset() = default;
+  DynamicBitset() noexcept = default;
 
-  explicit DynamicBitset(uint64_t size) : mBits{}, mAllocSize{}, mBitCount{} {}
+  explicit DynamicBitset(uint64_t bitCount)
+      : mBits{std::make_unique<uint64_t[]>(allocSize(bitCount)).release()},
+        mAllocSize{allocSize(bitCount)}, mBitCount{bitCount} {}
 
   ~DynamicBitset() { this->clear(); }
 
   DynamicBitset(const DynamicBitset &rhs)
-      : mBits{new uint64_t[rhs.mAllocSize]}, mAllocSize{rhs.mAllocSize},
-        mBitCount{rhs.mBitCount} {
+      : mBits{std::make_unique<uint64_t[]>(rhs.mAllocSize).release()},
+        mAllocSize{rhs.mAllocSize}, mBitCount{rhs.mBitCount} {
     std::copy(rhs.mBits, rhs.mBits + rhs.mAllocSize, this->mBits);
   }
 
@@ -32,7 +34,7 @@ public:
   }
 
   DynamicBitset &operator=(const DynamicBitset &rhs) {
-    this->mBits = new uint64_t[rhs.mAllocSize];
+    this->mBits = std::make_unique<uint64_t[]>(rhs.mAllocSize).release();
     std::copy(rhs.mBits, rhs.mBits + rhs.mAllocSize, this->mBits);
     this->mAllocSize = rhs.mAllocSize;
     this->mBitCount = rhs.mBitCount;
@@ -40,10 +42,9 @@ public:
   }
 
   DynamicBitset &operator=(DynamicBitset &&rhs) noexcept {
-    this->mBits = std::move(rhs.mBits);
-    this->mAllocSize = std::move(rhs.mAllocSize);
-    this->mBitCount = std::move(rhs.mBitCount);
-    rhs.mBits = nullptr;
+    std::swap(this->mBits, rhs.mBits);
+    std::swap(this->mAllocSize, rhs.mAllocSize);
+    std::swap(this->mBitCount, rhs.mBitCount);
     return *this;
   }
 
@@ -109,19 +110,18 @@ public:
 public:
   uint64_t size() const noexcept { return this->mBitCount; }
 
-  void resize(uint64_t newSize) {
-    uint64_t newAllocSize = newSize / 64 + newSize % 64 ? 1 : 0;
-    uint64_t oldAllocSize = this->mBitCount / 64;
+  void resize(uint64_t bitCount) {
+    uint64_t newAllocSize = allocSize(bitCount);
+    uint64_t oldAllocSize = this->mAllocSize;
     if (newAllocSize > oldAllocSize) {
-      uint64_t *newBits = new uint64_t[newAllocSize];
+      uint64_t *newBits = std::make_unique<uint64_t[]>(newAllocSize).release();
       if (this->mBits == nullptr) {
-        std::memset(newBits, 0, newAllocSize);
         this->mBits = newBits;
       } else {
         std::copy(this->mBits, this->mBits + oldAllocSize, newBits);
       }
     }
-    this->mBitCount = newSize;
+    this->mBitCount = bitCount;
     this->mAllocSize = newAllocSize;
   }
 
@@ -153,7 +153,11 @@ private:
            (start ? (uint64_t(~0) << (64 - start)) : 0);
   }
 
-private:
+  static uint64_t allocSize(uint64_t bitCount) {
+    return (bitCount / 64) + (bitCount % 64 ? 1 : 0);
+  }
+
+public:
   uint64_t *mBits = nullptr;
   uint64_t mAllocSize = 0;
   uint64_t mBitCount = 0;
@@ -161,4 +165,4 @@ private:
 
 } // namespace container
 
-#endif // CONTAINER_SOURCE_DYNAMIC_BITSET_HPP
+#endif // CONTAINER_DYNAMIC_BITSET_HPP

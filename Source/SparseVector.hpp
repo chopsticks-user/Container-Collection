@@ -1,5 +1,5 @@
-#ifndef CONTAINER_SOURCE_SPARSE_VECTOR_HPP
-#define CONTAINER_SOURCE_SPARSE_VECTOR_HPP
+#ifndef CONTAINER_SPARSE_VECTOR_HPP
+#define CONTAINER_SPARSE_VECTOR_HPP
 
 #include "Base.hpp"
 
@@ -22,18 +22,11 @@ public:
     return this->mIDToIndex.find(id) != this->mIDToIndex.end();
   }
 
-  DataType &at(uint64_t id) CONTAINER_NOEXCEPT {
-    if constexpr (detail::allowExceptions) {
-      detail::expect(this->exists(id), "SparseVector::operator[]: unknown ID");
-    }
-    return this->mData[this->mIDToIndex[id]];
-  }
+  DataType &at(uint64_t id) { return this->mData[this->mIDToIndex.at(id)]; }
 
-  DataType &operator[](uint64_t id) CONTAINER_NOEXCEPT { return this->at(id); }
+  DataType &operator[](uint64_t id) { return this->at(id); }
 
-  DataType &operator[](uint64_t id) const CONTAINER_NOEXCEPT {
-    return this->at(id);
-  }
+  DataType &operator[](uint64_t id) const { return this->at(id); }
 
   void add(uint64_t id, DataType value) {
     if (!this->exists(id)) {
@@ -71,4 +64,4 @@ private:
 
 } // namespace container
 
-#endif // CONTAINER_SOURCE_SPARSE_VECTOR_HPP
+#endif // CONTAINER_SPARSE_VECTOR_HPP

@@ -15,5 +15,10 @@ int main() {
   std::cout << (bits & bits2) << std::endl;
   std::cout << (bits | bits2) << std::endl;
   std::cout << (bits ^ bits2) << std::endl;
+
+  container::DynamicBitset bits3 = bits2;
+
+  // std::cout << bits3 << std::endl;
+
   return 0;
 }
