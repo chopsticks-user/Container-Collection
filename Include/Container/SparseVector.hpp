@@ -8,7 +8,11 @@
 
 namespace container {
 
-class ISparseVector {};
+class ISparseVector {
+public:
+  virtual ~ISparseVector() = default;
+  virtual void remove(u64) = 0;
+};
 
 template <typename DataType, typename IndexType = uint64_t> //
 class SparseVector : public ISparseVector {
