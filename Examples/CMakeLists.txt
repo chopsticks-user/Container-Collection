@@ -1,7 +1,7 @@
 
 
 
-cmake_minimum_required(VERSION 3.10 )
+cmake_minimum_required(VERSION 3.15)
 project(ContainerExamples LANGUAGES CXX)
 
 find_package(Container CONFIG REQUIRED PATHS ${CMAKE_BINARY_DIR})

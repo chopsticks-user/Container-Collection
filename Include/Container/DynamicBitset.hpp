@@ -1,5 +1,5 @@
-#ifndef CONTAINER_DYNAMIC_BITSET_HPP
-#define CONTAINER_DYNAMIC_BITSET_HPP
+#ifndef CONTAINER_COLLECTION_DYNAMIC_BITSET_HPP
+#define CONTAINER_COLLECTION_DYNAMIC_BITSET_HPP
 
 #include "Base.hpp"
 
@@ -130,8 +130,8 @@ public:
   }
 
   void set(uint64_t index, bool value = true) noexcept {
-    index %= 64;
-    uint64_t msk = mask(index, index + 1);
+    uint64_t offset = index % 64;
+    uint64_t msk = mask(offset, offset + 1);
     if (value) {
       this->mBits[index / 64] |= msk;
     } else {
@@ -165,4 +165,4 @@ public:
 
 } // namespace container
 
-#endif // CONTAINER_DYNAMIC_BITSET_HPP
+#endif // CONTAINER_COLLECTION_DYNAMIC_BITSET_HPP

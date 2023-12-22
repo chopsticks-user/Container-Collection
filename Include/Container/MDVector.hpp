@@ -1,5 +1,5 @@
-#ifndef CONTAINER_MDVECTOR_HPP
-#define CONTAINER_MDVECTOR_HPP
+#ifndef CONTAINER_COLLECTION_MDVECTOR_HPP
+#define CONTAINER_COLLECTION_MDVECTOR_HPP
 
 #include "Base.hpp"
 
@@ -17,4 +17,4 @@ private:
 
 } // namespace container
 
-#endif // CONTAINER_MDVECTOR_HPP
+#endif // CONTAINER_COLLECTION_MDVECTOR_HPP

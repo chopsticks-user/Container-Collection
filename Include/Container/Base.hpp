@@ -1,5 +1,5 @@
-#ifndef CONTAINER_BASE_HPP
-#define CONTAINER_BASE_HPP
+#ifndef CONTAINER_COLLECTION_BASE_HPP
+#define CONTAINER_COLLECTION_BASE_HPP
 
 #include <cstdint>
 #include <stdexcept>
@@ -26,4 +26,4 @@ typedef const char *cString;
 
 } // namespace container
 
-#endif // CONTAINER_BASE_HPP
+#endif // CONTAINER_COLLECTION_BASE_HPP
