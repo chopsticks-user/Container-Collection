@@ -49,6 +49,24 @@ public:
   }
 
 public:
+  bool operator==(const DynamicBitset &rhs) const noexcept {
+    if (rhs.mBitCount != this->mBitCount) {
+      return false;
+    }
+
+    for (u64 i = 0; i < this->mAllocSize; ++i) {
+      if (this->mBits[i] != rhs.mBits[i]) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  bool operator!=(const DynamicBitset &rhs) const noexcept {
+    return !(*this == rhs);
+  }
+
   DynamicBitset operator~() const {
     DynamicBitset result = *this;
     for (uint64_t i = 0; i < result.mAllocSize; ++i) {

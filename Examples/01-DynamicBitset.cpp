@@ -48,6 +48,13 @@ int main() {
 
   std::cout << bits3 << std::endl;
 
+  container::DynamicBitset bits4 = bits3;
+
+  std::cout << std::boolalpha << (bits3 == bits4) << std::endl;
+
+  bits4.set(2);
+  std::cout << std::boolalpha << (bits3 != bits4) << std::endl;
+
 #if __cplusplus >= 202002L
   std::cout << "C++20\n";
 #elif __cplusplus >= 201703L
