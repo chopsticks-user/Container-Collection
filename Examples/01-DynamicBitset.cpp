@@ -38,7 +38,15 @@ int main() {
   std::cout << (b1 | b2) << std::endl;
   std::cout << (b1 ^ b2) << std::endl;
 
-  std::cout << (b1 ^ b2)[0] << std::endl;
+  container::DynamicBitset bits3(6);
+  bits3 = ~bits3;
+
+  std::cout << bits3 << std::endl;
+
+  bits3.set(2, false);
+  bits3.set(5, false);
+
+  std::cout << bits3 << std::endl;
 
 #if __cplusplus >= 202002L
   std::cout << "C++20\n";

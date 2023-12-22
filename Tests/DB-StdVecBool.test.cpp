@@ -133,10 +133,13 @@ TEST(OpAnd, CompareResults) {
       uint64_t index2 =
           std::rand() / ((RAND_MAX + 1u) / opTestStaticBitCounts - 1);
 
-      stdBitset1[opTestStaticBitCounts - index1 - 1] = 1;
-      stdBitset2[opTestStaticBitCounts - index2 - 1] = 1;
-      bitset1.set(index1);
-      bitset2.set(index2);
+      bool value1 = std::rand() / ((RAND_MAX + 1u) / 10) & 1;
+      bool value2 = std::rand() / ((RAND_MAX + 1u) / 10) & 1;
+
+      stdBitset1[opTestStaticBitCounts - index1 - 1] = value1;
+      stdBitset2[opTestStaticBitCounts - index2 - 1] = value2;
+      bitset1.set(index1, value1);
+      bitset2.set(index2, value2);
     }
 
     stdBitset1[0] = 1;
@@ -201,10 +204,13 @@ TEST(OpOr, CompareResults) {
       uint64_t index2 =
           std::rand() / ((RAND_MAX + 1u) / opTestStaticBitCounts - 1);
 
-      stdBitset1[opTestStaticBitCounts - index1 - 1] = 1;
-      stdBitset2[opTestStaticBitCounts - index2 - 1] = 1;
-      bitset1.set(index1);
-      bitset2.set(index2);
+      bool value1 = std::rand() / ((RAND_MAX + 1u) / 10) & 1;
+      bool value2 = std::rand() / ((RAND_MAX + 1u) / 10) & 1;
+
+      stdBitset1[opTestStaticBitCounts - index1 - 1] = value1;
+      stdBitset2[opTestStaticBitCounts - index2 - 1] = value2;
+      bitset1.set(index1, value1);
+      bitset2.set(index2, value2);
     }
 
     stdBitset1[0] = 1;
@@ -269,10 +275,13 @@ TEST(OpXor, CompareResults) {
       uint64_t index2 =
           std::rand() / ((RAND_MAX + 1u) / opTestStaticBitCounts - 1);
 
-      stdBitset1[opTestStaticBitCounts - index1 - 1] = 1;
-      stdBitset2[opTestStaticBitCounts - index2 - 1] = 1;
-      bitset1.set(index1);
-      bitset2.set(index2);
+      bool value1 = std::rand() / ((RAND_MAX + 1u) / 10) & 1;
+      bool value2 = std::rand() / ((RAND_MAX + 1u) / 10) & 1;
+
+      stdBitset1[opTestStaticBitCounts - index1 - 1] = value1;
+      stdBitset2[opTestStaticBitCounts - index2 - 1] = value2;
+      bitset1.set(index1, value1);
+      bitset2.set(index2, value2);
     }
 
     stdBitset1[0] = 1;

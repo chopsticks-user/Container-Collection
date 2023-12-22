@@ -135,7 +135,7 @@ public:
     if (value) {
       this->mBits[index / 64] |= msk;
     } else {
-      this->mBits[index / 64] &= msk;
+      this->mBits[index / 64] &= (~msk);
     }
   }
 
