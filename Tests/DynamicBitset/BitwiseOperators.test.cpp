@@ -1,5 +1,6 @@
-#include <Container/DynamicBitset.hpp>
+#include "TestUtils/Timer.hpp"
 
+#include <Container/DynamicBitset.hpp>
 #include <bitset>
 
 int main() {
