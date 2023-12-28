@@ -14,7 +14,7 @@ foreach (ExamplePath ${ExamplePaths})
         PRIVATE ${Container_INCLUDE_DIR}
     )
     target_link_libraries(${ExampleFileName}
-        PRIVATE CompilerFlags
+        PRIVATE Container_CompilerFlags
         PRIVATE Container
     )
 endforeach (ExamplePath ${ExamplePaths})
