@@ -1,12 +1,14 @@
-#ifndef CONTAINER_COLLECTION_SPARSE_VECTOR_HPP
-#define CONTAINER_COLLECTION_SPARSE_VECTOR_HPP
+#ifndef NEZUMI_INCLUDE_NEZUMI_SPARSE_VECTOR_HPP
+#define NEZUMI_INCLUDE_NEZUMI_SPARSE_VECTOR_HPP
+
+#if __cplusplus >= 201402L
 
 #include "Base.hpp"
 
 #include <unordered_map>
 #include <vector>
 
-namespace container {
+namespace nezumi {
 
 class ISparseVector {
 public:
@@ -66,6 +68,10 @@ private:
   std::vector<DataType> mData = {};
 };
 
-} // namespace container
+} // namespace nezumi
 
-#endif // CONTAINER_COLLECTION_SPARSE_VECTOR_HPP
+#else  // C++11 or older
+static_assert(false, "Nezumi library requires C++14 or newer");
+#endif // C++14 or newer
+
+#endif // NEZUMI_INCLUDE_NEZUMI_SPARSE_VECTOR_HPP

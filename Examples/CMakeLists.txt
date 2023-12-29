@@ -4,6 +4,10 @@
 cmake_minimum_required(VERSION 3.15)
 project(ContainerCollection_Examples LANGUAGES CXX)
 
+if(${CMAKE_CXX_STANDARD} LESS 14)
+    return()
+endif()
+
 file(GLOB ExamplePaths ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
 foreach (ExamplePath ${ExamplePaths})
     get_filename_component(ExampleFileName ${ExamplePath} NAME_WLE)

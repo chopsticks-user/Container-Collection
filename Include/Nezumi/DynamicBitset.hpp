@@ -1,5 +1,7 @@
-#ifndef CONTAINER_COLLECTION_DYNAMIC_BITSET_HPP
-#define CONTAINER_COLLECTION_DYNAMIC_BITSET_HPP
+#ifndef NEZUMI_INCLUDE_NEZUMI_DYNAMIC_BITSET_HPP
+#define NEZUMI_INCLUDE_NEZUMI_DYNAMIC_BITSET_HPP
+
+#if __cplusplus >= 201402L
 
 #include "Base.hpp"
 
@@ -10,7 +12,7 @@
 #include <iostream>
 #include <memory>
 
-namespace container {
+namespace nezumi {
 
 class DynamicBitset {
 public:
@@ -296,6 +298,10 @@ public:
   uint64_t mBitCount = 0;
 };
 
-} // namespace container
+} // namespace nezumi
 
-#endif // CONTAINER_COLLECTION_DYNAMIC_BITSET_HPP
+#else  // C++11 or older
+static_assert(false, "Nezumi library requires C++14 or newer");
+#endif // C++14 or newer
+
+#endif // NEZUMI_INCLUDE_NEZUMI_DYNAMIC_BITSET_HPP

@@ -1,9 +1,9 @@
-#include <Container/DynamicBitset.hpp>
+#include <Nezumi/DynamicBitset.hpp>
 
 #include <bitset>
 
 int main() {
-  container::DynamicBitset bits1;
+  nezumi::DynamicBitset bits1;
   bits1.resize(66);
   bits1.set(1);
   bits1.set(3);
@@ -16,7 +16,7 @@ int main() {
   bits1.resize(66);
   std::cout << bits1 << '\n';
 
-  container::DynamicBitset bits2;
+  nezumi::DynamicBitset bits2;
   bits2.resize(66);
   bits2.set(0);
   bits2.set(2);
