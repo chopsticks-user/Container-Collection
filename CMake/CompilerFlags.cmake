@@ -15,9 +15,11 @@ set(gcc_like_cxx_flags -Wall;-Wextra;-pedantic;-Wextra;
     -Wshadow;-Wconversion;-Wunreachable-code)
 set(msvc_cxx_flags -W3)
 
-add_library(Container_CompilerFlags INTERFACE)
-# target_compile_features(CompilerFlags INTERFACE cxx_std_14)
-target_compile_options(Container_CompilerFlags INTERFACE
+add_library(${PROJECT_NAME}_CompilerFlags INTERFACE)
+add_library(${PROJECT_NAME}::CompilerFlags
+    ALIAS ${PROJECT_NAME}_CompilerFlags
+)
+target_compile_options(${PROJECT_NAME}_CompilerFlags INTERFACE
     $<${gcc_like_cxx}: $<BUILD_INTERFACE: ${gcc_like_cxx_flags}>>
     $<${msvc_cxx}: $<BUILD_INTERFACE: ${msvc_cxx_flags}>>
 )
