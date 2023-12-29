@@ -8,10 +8,10 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
 endif()
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(gcc_like_cxx_flags -Wall;-Wextra;-pedantic;-Wextra;
+set(gcc_like_cxx_flags -pedantic;-Wall;-Wextra;-pedantic;-Wextra;
     -Wshadow;-Wconversion;-Wunreachable-code)
 set(msvc_cxx_flags -W3)
 
