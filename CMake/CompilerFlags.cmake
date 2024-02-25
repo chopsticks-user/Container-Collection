@@ -11,7 +11,7 @@ endif()
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(gcc_like_cxx_flags -pedantic;-Wall;-Wextra;-pedantic;-Wextra;
+set(gcc_like_cxx_flags -pedantic;-Wall;-Wextra;
     -Wshadow;-Wconversion;-Wunreachable-code)
 set(msvc_cxx_flags -W3)
 
